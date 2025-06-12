@@ -36,7 +36,45 @@ async function post (req,res) {
 
 }
 
+async function put (req,res) {
+
+    const { id } = req.params
+
+    const product = await ProductsModel.findOneAndUpdate({_id: id}, req.body, {new: true})
+
+    res.send({
+        message: "Porduto atualizado com sucesso!",
+        product
+    })
+
+   /*  const product = await ProductsModel.findOne({ _id: id })
+
+    await product.updateOne(req.body)
+
+    res.send({
+        message: "Produto atualizado com sucesso!",
+        product
+    }) */
+
+}
+
+async function remove (req, res) {
+
+    const { id } = req.params
+
+    const remove = await ProductsModel.deleteOne({ _id: id })
+
+    let message = remove.deletedCount ? 'Produto deletado!' : 'Não possível deletar!'
+
+    res.send({
+        message,
+    })
+
+}
+
 module.exports = {
     get,
     post,
+    put,
+    remove,
 }
