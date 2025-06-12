@@ -3,7 +3,7 @@ const { Schema } = mongoose
 
 const productSchema = new Schema({
     name: String,
-    brand: Number,
+    brand: String,
     price: Number
 })
 
