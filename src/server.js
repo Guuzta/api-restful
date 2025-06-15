@@ -8,14 +8,14 @@ const dataBase = require('./database/dataBase')
 //habilitar o servidor para receber dados no formato json
 app.use(express.json())
 
+//habilita CORS
+app.use(cors())
+
 //definindo as rotas
 app.use('/api', routes)
 
 //conexão com o banco de dados
 dataBase.connect()
-
-//habilita CORS
-app.use(cors())
 
 //executando servidor
 const port = process.env.PORT || 8080
